@@ -106,3 +106,4 @@ dist
 
 # Mac Related
 .DS-Store
+.DS_Store
