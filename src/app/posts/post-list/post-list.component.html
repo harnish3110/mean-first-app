@@ -4,12 +4,15 @@
   <mat-list-item role="listitem">Item 3</mat-list-item>
 </mat-list> -->
 
-<mat-accordion>
-
-  <mat-expansion-panel *ngFor="let post of posts">
+<mat-accordion multi="true" *ngIf="posts.length>0">
+  <mat-expansion-panel *ngFor="let post of posts; let indexOfelement=index;" hideToggle>
     <mat-expansion-panel-header>
-      {{post.title}}
+      <mat-panel-title>
+        <strong>{{indexOfelement + 1}}.  </strong>
+        {{post.title}}
+      </mat-panel-title>
     </mat-expansion-panel-header>
-    <p>{{post.content}}</p>
+    <p><strong>Content: </strong><br> {{post.content}}</p>
   </mat-expansion-panel>
 </mat-accordion>
+<p *ngIf="posts.length <= 0" class="text-info mat-body mat-body-1">No Posts Added Yet!!</p>
