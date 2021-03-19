@@ -14,9 +14,9 @@ import { MatExpansionModule } from '@angular/material/expansion';
 
 
 import { AppComponent } from './app.component';
-import { PostCreateComponent } from './posts/post-create/post-create.component';
-import { HeaderComponent } from './header/header.component';
-import { PostListComponet } from './posts/post-list/post-list.component';
+import { PostCreateComponent } from '../components/posts/post-create/post-create.component';
+import { HeaderComponent } from '../components/header/header.component';
+import { PostListComponet } from '../components/posts/post-list/post-list.component';
 
 
 @NgModule({

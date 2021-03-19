@@ -105,4 +105,4 @@ dist
 .tern-port
 
 # Mac Related
-*.DS-Store
+.DS-Store
