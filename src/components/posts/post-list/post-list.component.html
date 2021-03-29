@@ -8,11 +8,15 @@
   <mat-expansion-panel *ngFor="let post of posts; let indexOfelement=index;" hideToggle>
     <mat-expansion-panel-header>
       <mat-panel-title>
-        <strong>{{indexOfelement + 1}}.  </strong>
+        <strong>{{indexOfelement + 1}}. </strong>
         {{post.title}}
       </mat-panel-title>
     </mat-expansion-panel-header>
     <p><strong>Content: </strong><br> {{post.content}}</p>
+    <mat-action-row>
+      <button mat-button color="primary">Edit</button>
+      <button mat-button color="warn">Delete</button>
+    </mat-action-row>
   </mat-expansion-panel>
 </mat-accordion>
 <p *ngIf="posts.length <= 0" class="text-info mat-body mat-body-1">No Posts Added Yet!!</p>

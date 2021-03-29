@@ -18,6 +18,6 @@ export class PostCreateComponent {
     }
     const post: Post = { title: form.value.title, content: form.value.content };
     this.postService.setPost(post);
-    //form.setValue({ title: '', content: '' });
+    form.resetForm();
   }
 }
