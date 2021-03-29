@@ -1,9 +1,14 @@
 const http = require('http');
+const app = require('./backend/app');
+const expressApp = require('./backend/app');
 
-//Create the server with the following request
-const server = http.createServer((req, res) => {
-  res.end('this is my first server');
- });
+const port = process.env.PORT || 3000;
 
- // Either take the port number from the Environment variable or use port 3000 (Eg localhost:3000)
- server.listen(process.env.PORT || 3000);
+// Setting the port number for the express App
+app.set('port', port);
+
+//Passing the Express server code created in the ./backend/app.js file
+const server = http.createServer(expressApp);
+
+// Either take the port number from the Environment variable or use port 3000 (Eg localhost:3000)
+server.listen(port);
