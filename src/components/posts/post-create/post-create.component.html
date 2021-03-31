@@ -1,5 +1,6 @@
 <mat-card>
-  <form (submit)="onAddPost(postForm)" #postForm="ngForm">
+  <mat-spinner *ngIf="isLoading"></mat-spinner>
+  <form *ngIf="!isLoading" (submit)="onAddPost(postForm)" #postForm="ngForm">
     <mat-form-field hintLabel="Min 5 characters" appearance="fill">
       <mat-label>Title</mat-label>
       <input matInput type="text" name="title" [ngModel]="post?.title" placeholder="Enter Title" required minlength="5"
