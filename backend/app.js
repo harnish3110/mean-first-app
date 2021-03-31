@@ -1,6 +1,7 @@
 const express = require('express');
 const Post = require('./models/post');
 const mongoose = require('mongoose');
+const { update } = require('./models/post');
 
 
 // May need to update the IP on the server to whitelist the incoming requests
@@ -19,7 +20,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PATCH, DELETE, OPTIONS');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PATCH, DELETE, OPTIONS, PUT');
   next();
 });
 
@@ -65,6 +66,39 @@ app.delete('/api/post/:id', (req, res, next) => {
       return res.status(200).json({
         message: "Deleted the document with the id= " + req.params.id
       });
+    });
+});
+
+app.put('/api/post', (req, res, next) => {
+
+  /* Can also be sone like this
+    const post = new Post({
+    _id: req.body.id,
+    title: req.body.title,
+    content: req.body.content
+  });
+  Post.updateOne({ _id: req.body.id.id }, post) */
+
+  const updatedPost = req.body;
+  Post.updateOne({ _id: updatedPost.id }, { title: updatedPost.title, content: updatedPost.content })
+    .then(data => {
+      return res.status(200).json({
+        message: 'Updation Successful'
+      });
+    });
+});
+
+app.get('/api/post/:postId', (req, res, next) => {
+  Post.findById(req.params.postId)
+    .then(document => {
+      if (document) {
+        res.status(200).json(document);
+      }
+      else {
+        res.status(404).json({
+          message: 'No Such Data exits'
+        });
+      }
     });
 });
 

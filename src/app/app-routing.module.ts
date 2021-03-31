@@ -8,7 +8,8 @@ import { PostListComponet } from "src/components/posts/post-list/post-list.compo
   'create' means localhost:4200/create */
 const routes: Routes = [
   { path: '', component: PostListComponet },
-  { path: 'create', component: PostCreateComponent }
+  { path: 'create', component: PostCreateComponent },
+  { path: 'edit/:postId', component: PostCreateComponent }
 ];
 
 @NgModule({

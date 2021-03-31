@@ -14,7 +14,10 @@
     </mat-expansion-panel-header>
     <p><strong>Content: </strong><br> {{post.content}}</p>
     <mat-action-row>
-      <button mat-button color="primary">Edit</button>
+      <!-- [routerLink]="['/edit', post.id] and [routerLink]="['/edit/', post.id] both will work -->
+      <a mat-button color="primary" [routerLink]="['/edit', post.id]">Edit</a>
+      <!-- Another way to create a URL -->
+      <!-- <a mat-button color="primary" routerLink="/edit/{{post.id}}">Edit</a> -->
       <button mat-button color="warn" (click)="onDelete(post.id)">
         <span>Delete</span>
         <mat-icon>delete_forever</mat-icon>
