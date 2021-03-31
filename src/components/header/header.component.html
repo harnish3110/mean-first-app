@@ -1,1 +1,29 @@
-<mat-toolbar color="primary">My Messages</mat-toolbar>
+<mat-toolbar color="primary">
+  <span class="fill-remaining-space">
+    <button #r="matMenuTrigger" mat-icon-button [matMenuTriggerFor]="menu">
+      <mat-icon (mouseover)="open(r)">menu</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu" [overlapTrigger]="false">
+      <button mat-menu-item (click)="toHome()">
+        <mat-icon>home</mat-icon>
+        <span>Home</span>
+      </button>
+      <button mat-menu-item (click)="createNewPost()">
+        <mat-icon>new_label</mat-icon>
+        <span>New Post</span>
+      </button>
+      <button mat-menu-item>
+        <mat-icon>videocam</mat-icon>
+        <span>Let's talk</span>
+      </button>
+      <button mat-menu-item>
+        <mat-icon>exit_to_app</mat-icon>
+        <span>Logout</span>
+      </button>
+    </mat-menu>
+  </span>
+  <!-- Another way to use router -->
+  <a class="fill-remaining-space" routerLink="/" routerLinkActive="mat-accent">
+    <span>My Posts!!</span>
+  </a>
+</mat-toolbar>
