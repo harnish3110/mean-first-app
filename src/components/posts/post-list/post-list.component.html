@@ -4,7 +4,7 @@
   <mat-list-item role="listitem">Item 3</mat-list-item>
 </mat-list> -->
 <mat-spinner *ngIf="isLoading"></mat-spinner>
-<mat-accordion multi="true" *ngIf="posts.length>0 && !isLoading">
+<mat-accordion multi="false" *ngIf="posts.length>0 && !isLoading">
   <mat-expansion-panel *ngFor="let post of posts; let indexOfelement=index;" hideToggle>
     <mat-expansion-panel-header>
       <mat-panel-title>

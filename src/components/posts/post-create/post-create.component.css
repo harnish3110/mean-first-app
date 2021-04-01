@@ -6,3 +6,19 @@ textarea {
 mat-spinner {
   margin: auto;
 }
+
+.button-row {
+  display: table-cell;
+}
+
+.button-row .mat-button-base {
+  margin: 8px 8px 8px 0;
+}
+.image-preview {
+  height: 20rem;
+  margin: 1rem 0;
+}
+
+.image-preview img {
+  height: 100%;
+}

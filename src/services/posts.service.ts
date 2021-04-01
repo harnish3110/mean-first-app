@@ -41,6 +41,7 @@ export class PostsService {
         post.id = data.id;
         this.posts.push(post);
         this.postSubject.next([...this.posts]);
+        this.router.navigate(['/']);
       });
   }
 
@@ -63,9 +64,7 @@ export class PostsService {
   public updatePost(updatedPost: Post) {
     this.http.put<{ message: string }>(this.URL, updatedPost)
       .subscribe(data => {
-        console.log('before', this.posts);
         this.posts = this.posts.map(p => p.id === updatedPost.id ? { ...p, title: updatedPost.title, content: updatedPost.content } : p);
-        console.log('after', this.posts);
 
         /* Can also be done like this
         const p = [...this.posts];

@@ -1,22 +1,30 @@
 <mat-card>
   <mat-spinner *ngIf="isLoading"></mat-spinner>
-  <form *ngIf="!isLoading" (submit)="onAddPost(postForm)" #postForm="ngForm">
+  <form *ngIf="!isLoading" (submit)="onAddPost()" [formGroup]="form">
     <mat-form-field hintLabel="Min 5 characters" appearance="fill">
       <mat-label>Title</mat-label>
-      <input matInput type="text" name="title" [ngModel]="post?.title" placeholder="Enter Title" required minlength="5"
-        #title="ngModel">
-      <mat-hint align="end">{{title.value?.length || 0}}/5</mat-hint>
-      <mat-error *ngIf="title.invalid">Enter the Post Title</mat-error>
+      <input matInput type="text" placeholder="Enter Title" [formControlName]="'title'">
+      <mat-hint align="end">Lenght: {{form.value.title?.length || 0}}</mat-hint>
+      <mat-error *ngIf="form.get('title').invalid">Enter the Post Title</mat-error>
     </mat-form-field>
     <mat-form-field appearance="outline">
       <mat-label>Comment</mat-label>
-      <textarea matInput placeholder="Enter the content" cols="30" rows="10" [ngModel]="post?.content" name="content"
-        required #content="ngModel"></textarea>
-      <mat-error *ngIf="content.invalid">Enter the Content for the post</mat-error>
+      <textarea matInput placeholder="Enter the content" cols="30" rows="10" formControlName='content'></textarea>
+      <mat-error *ngIf="form.get('content').invalid">Enter the Content for the post</mat-error>
     </mat-form-field>
-    <button mat-raised-button color="primary" type="submit">
-      <span *ngIf="mode==='create'">Save Post</span>
-      <span *ngIf="mode==='edit'">Update Post</span>
-    </button>
+    <div class="button-row">
+      <button mat-stroked-button type="button" (click)="file.click()">
+        <span>Pick Image</span>
+        <mat-icon>image</mat-icon>
+      </button>
+      <input #file class="ng-hide" hidden="true" id="input-file-id" type="file" (change)="onImagePicked($event)" />
+      <button mat-raised-button color="primary" type="submit">
+        <span *ngIf="mode==='create'">Save Post</span>
+        <span *ngIf="mode==='edit'">Update Post</span>
+      </button>
+    </div>
+    <div class="image-preview" *ngIf="imagePreview !== '' && imagePreview">
+      <img [src]="imagePreview" [alt]="form.value.title">
+    </div>
   </form>
 </mat-card>
